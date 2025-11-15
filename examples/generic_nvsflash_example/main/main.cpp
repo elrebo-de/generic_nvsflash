@@ -66,4 +66,28 @@ extern "C" void app_main(void)
     ssid = nvsWifi.GetStr(std::string("ssid2"), &ret);
     password = nvsWifi.GetStr(std::string("password2"), &ret);
     ESP_LOGI(tag, "NVS flash namespace wifi ssid2: '%s' password2: '%s'", ssid.c_str(), password.c_str());
+
+    ESP_LOGI(tag, "NVS Flash namespace wifi Erase key password1");
+
+    /* Erase Key "password1" of Namespace "wifi" */
+    ret = nvsWifi.EraseKey(std::string("password1"));
+
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
+
+    ESP_LOGI(tag, "NVS Flash namespace wifi Read ssid, password, ssid1, password1, ssid2 and password2");
+
+    /* Read values for keys "ssid" and "password" from Namespace "wifi" */
+    ssid = nvsWifi.GetStr(std::string("ssid"), &ret);
+    password = nvsWifi.GetStr(std::string("password"), &ret);
+    ESP_LOGI(tag, "NVS flash namespace wifi ssid: '%s' password: '%s'", ssid.c_str(), password.c_str());
+
+    /* Read values for keys "ssid1" and "password1" from Namespace "wifi" */
+    ssid = nvsWifi.GetStr(std::string("ssid1"), &ret);
+    password = nvsWifi.GetStr(std::string("password1"), &ret);
+    ESP_LOGI(tag, "NVS flash namespace wifi ssid1: '%s' password1: '%s'", ssid.c_str(), password.c_str());
+
+    /* Read values for keys "ssid2" and "password2" from Namespace "wifi" */
+    ssid = nvsWifi.GetStr(std::string("ssid2"), &ret);
+    password = nvsWifi.GetStr(std::string("password2"), &ret);
+    ESP_LOGI(tag, "NVS flash namespace wifi ssid2: '%s' password2: '%s'", ssid.c_str(), password.c_str());
 }

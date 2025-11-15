@@ -25,17 +25,24 @@ The destructor commits all changes and closes the connection.
 Currently only values of type std::string are supported. 
 Please call me if you want to use values of other types.
 
-Key Value pairs can be written with Method `SetStr` and read with method `GetStr`:
+Key Value pairs can be written with Method `SetStr` and 
+read with method `GetStr` and 
+erased with method `EraseKey`:
 
 ```C++
 /* Open NVS flash Namespace "wifi" for read/write operations */
 GenericNvsFlash nvsWifi(std::string("nvsWifi"), std::string("wifi"), NVS_READWRITE);
 
+/* Write Key Value pair */
 esp_err_t ret;
 ret = nvsWifi.SetStr(std::string("ssid1"), std::string("myWLANssid");
 
+/* Read Value of Key Value pair */
 std::string ssid1;
 ssid1 = nvsWifi.GetStr(std::string("ssid1"), &ret);
+
+/* Erase Key Value pair */
+ret = nvsWifi.EraseKey(std::string("ssid1") 
 ```
 
 ## API
@@ -49,6 +56,8 @@ public:
 	virtual ~GenericNvsFlash();
     std::string GetStr(std::string key, esp_err_t *ret);
     esp_err_t SetStr(std::string key, std::string outValue);
+
+    esp_err_t EraseKey(std::string key);
 
 private:	
     std::string tag = "GenericNvsFlash";

@@ -73,6 +73,9 @@ std::string GenericNvsFlash::GetStr(std::string key, esp_err_t *ret) {
 }
 
 esp_err_t GenericNvsFlash::SetStr(std::string key, std::string outValue) {
-     return nvs_set_str(this->nvsHandle, key.c_str(), outValue.c_str());
+    return nvs_set_str(this->nvsHandle, key.c_str(), outValue.c_str());
 }
 
+esp_err_t GenericNvsFlash::EraseKey(std::string key) {
+    return nvs_erase_key(this->nvsHandle, key.c_str());
+}

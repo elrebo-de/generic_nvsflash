@@ -23,6 +23,8 @@ public:
     std::string GetStr(std::string key, esp_err_t *ret);
     esp_err_t SetStr(std::string key, std::string outValue);
 
+    esp_err_t EraseKey(std::string key);
+
 private:	
     std::string tag = "GenericNvsFlash";
     std::string nvsNamespace;

@@ -3,11 +3,13 @@
 This example demonstrates how to utilize the `generic_nvsflash` component to use the NVS Flash.
 
 It reads six keys from namespace "wifi", 
-then it writes two keys to this namespace 
-and then it reads all six keys again.
+then it writes two keys to this namespace,
+then it reads all six keys again,
+then it erases one key and
+then it reads all six keys again.
 
 If you run the program a second time, 
-the keys "ssid1" and "password1" are set from the beginning.
+the keys "ssid1" is set from the beginning.
 
 The flash can be erased with `idf.py erase-flash`
 
