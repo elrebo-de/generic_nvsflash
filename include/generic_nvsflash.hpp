@@ -31,6 +31,7 @@ public:
     esp_err_t SetU8(std::string key, uint8_t outValue);
 
     esp_err_t EraseKey(std::string key);
+    bool NvsFlashInitialized();
 
 private:	
     std::string tag = "GenericNvsFlash";

@@ -123,3 +123,8 @@ esp_err_t GenericNvsFlash::SetU8(std::string key, uint8_t outValue) {
 esp_err_t GenericNvsFlash::EraseKey(std::string key) {
     return nvs_erase_key(this->nvsHandle, key.c_str());
 }
+
+bool GenericNvsFlash::NvsFlashInitialized() {
+    return nvsFlashInitialized;
+}
+
