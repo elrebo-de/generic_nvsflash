@@ -1,0 +1,6 @@
+version: "1.0.0"
+dependencies:
+    idf: ">=6.0"
+    elrebo-de/generic_nvsflash:
+      version: "1.0.0"
+      override_path: '../../../' # three levels up, pointing to the directory with the component itself
