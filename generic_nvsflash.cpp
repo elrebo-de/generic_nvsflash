@@ -128,3 +128,7 @@ bool GenericNvsFlash::NvsFlashInitialized() {
     return nvsFlashInitialized;
 }
 
+bool GenericNvsFlash::NvsNamespaceOpen() {
+    return nvsNamespaceOpen;
+}
+

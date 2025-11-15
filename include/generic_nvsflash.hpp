@@ -32,6 +32,7 @@ public:
 
     esp_err_t EraseKey(std::string key);
     bool NvsFlashInitialized();
+    bool NvsNamespaceOpen();
 
 private:	
     std::string tag = "GenericNvsFlash";
