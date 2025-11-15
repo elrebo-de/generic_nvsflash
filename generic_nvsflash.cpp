@@ -86,7 +86,7 @@ int8_t GenericNvsFlash::GetI8(std::string key, esp_err_t *ret) {
     int8_t outValue;
     // out_value abrufen
     //ESP_LOGI(this->tag.c_str(), "GetI8 call nvs_get_i8");
-    *ret = nvs_get_i8(this->nvsHandle, key.c_str(), outValue);
+    *ret = nvs_get_i8(this->nvsHandle, key.c_str(), &outValue);
     //ESP_LOGI(this->tag.c_str(), "GetI8 outValue = %i", outValue);
     int8_t result = 0;
     if (*ret == ESP_OK) {
@@ -107,7 +107,7 @@ uint8_t GenericNvsFlash::GetU8(std::string key, esp_err_t *ret) {
     uint8_t outValue;
     // out_value abrufen
     //ESP_LOGI(this->tag.c_str(), "GetU8 call nvs_get_u8");
-    *ret = nvs_get_u8(this->nvsHandle, key.c_str(), outValue);
+    *ret = nvs_get_u8(this->nvsHandle, key.c_str(), &outValue);
     //ESP_LOGI(this->tag.c_str(), "GetU8 outValue = %u", outValue);
     uint8_t result = 0;
     if (*ret == ESP_OK) {
