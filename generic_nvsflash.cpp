@@ -54,6 +54,8 @@ GenericNvsFlash::~GenericNvsFlash() {
     }
 }
 
+// std:: string
+
 std::string GenericNvsFlash::GetStr(std::string key, esp_err_t *ret) {
     //ESP_LOGI(this->tag.c_str(), "GetStr für key %s", key.c_str());
     // out_value definieren
@@ -74,6 +76,48 @@ std::string GenericNvsFlash::GetStr(std::string key, esp_err_t *ret) {
 
 esp_err_t GenericNvsFlash::SetStr(std::string key, std::string outValue) {
     return nvs_set_str(this->nvsHandle, key.c_str(), outValue.c_str());
+}
+
+// int8_t
+
+int8_t GenericNvsFlash::GetI8(std::string key, esp_err_t *ret) {
+    //ESP_LOGI(this->tag.c_str(), "GetI8 für key %s", key.c_str());
+    // out_value definieren
+    int8_t outValue;
+    // out_value abrufen
+    //ESP_LOGI(this->tag.c_str(), "GetI8 call nvs_get_i8");
+    *ret = nvs_get_i8(this->nvsHandle, key.c_str(), outValue);
+    //ESP_LOGI(this->tag.c_str(), "GetI8 outValue = %i", outValue);
+    int8_t result = 0;
+    if (*ret == ESP_OK) {
+        result = outValue;
+    }
+    return result;
+}
+
+esp_err_t GenericNvsFlash::SetI8(std::string key, int8_t outValue) {
+    return nvs_set_i8(this->nvsHandle, key.c_str(), outValue);
+}
+
+// uint8_t
+
+uint8_t GenericNvsFlash::GetU8(std::string key, esp_err_t *ret) {
+    //ESP_LOGI(this->tag.c_str(), "GetU8 für key %s", key.c_str());
+    // out_value definieren
+    uint8_t outValue;
+    // out_value abrufen
+    //ESP_LOGI(this->tag.c_str(), "GetU8 call nvs_get_u8");
+    *ret = nvs_get_u8(this->nvsHandle, key.c_str(), outValue);
+    //ESP_LOGI(this->tag.c_str(), "GetU8 outValue = %u", outValue);
+    uint8_t result = 0;
+    if (*ret == ESP_OK) {
+        result = outValue;
+    }
+    return result;
+}
+
+esp_err_t GenericNvsFlash::SetU8(std::string key, uint8_t outValue) {
+    return nvs_set_u8(this->nvsHandle, key.c_str(), outValue);
 }
 
 esp_err_t GenericNvsFlash::EraseKey(std::string key) {

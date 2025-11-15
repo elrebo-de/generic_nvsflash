@@ -20,8 +20,15 @@ class GenericNvsFlash {
 public:
 	GenericNvsFlash(std::string tag, std::string nvsNamespace, nvs_open_mode_t nvsOpenMode);
 	virtual ~GenericNvsFlash();
+	// std::string
     std::string GetStr(std::string key, esp_err_t *ret);
     esp_err_t SetStr(std::string key, std::string outValue);
+    // int8_t
+    int8_t GetI8(std::string key, esp_err_t *ret);
+    esp_err_t SetI8(std::string key, int8_t outValue);
+    //uint8_t
+    uint8_t GetU8(std::string key, esp_err_t *ret);
+    esp_err_t SetU8(std::string key, uint8_t outValue);
 
     esp_err_t EraseKey(std::string key);
 
