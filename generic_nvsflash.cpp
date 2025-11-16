@@ -38,11 +38,12 @@ GenericNvsFlash::GenericNvsFlash(std::string tag, std::string nvsNamespace, nvs_
         //ESP_LOGI(this->tag.c_str(), "nvs_open");
         auto ret = nvs_open(nvsNamespace.c_str(), nvsOpenMode, &nvsHandle);
         if (ret != ESP_OK) {
-            // The namespace doesn't exist, just return
-            ESP_LOGW(this->tag.c_str(), "NVS namespace %s doesn't exist", nvsNamespace.c_str());
+            // The namespace doesn't exist
         }
-        //ESP_LOGI(this->tag.c_str(), "nvsNamespaceOpen == true");
-        this->nvsNamespaceOpen = true;
+        else {
+            //ESP_LOGI(this->tag.c_str(), "nvsNamespaceOpen == true");
+            this->nvsNamespaceOpen = true;
+        }
     }
 
 }
