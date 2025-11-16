@@ -23,7 +23,9 @@ The destructor commits all changes and closes the connection.
 # Usage
 
 Key Value pairs can be written with methods `SetStr`, `SetI8`, `SetU8`, `SetI16`, `SetU16`, `SetI32`, `SetU32`, `SetI64`, `SetU64`,
+
 read with methods `GetStr`, `GetI8`, `GetU8`, `GetI16`, `GetU16`, `GetI32`, `GetU32`, `GetI64`, `GetU64` and 
+
 erased with method `EraseKey`:
 
 ```C++
