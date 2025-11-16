@@ -31,8 +31,8 @@ Currently only values of type
 are supported. 
 Please call me if you want to use values of other types.
 
-Key Value pairs can be written with Method `SetStr` and 
-read with method `GetStr` and 
+Key Value pairs can be written with methods `SetStr`, `SetI8` and `SetU8`,
+read with methods `GetStr`, `GetI8` and `GetU8` and 
 erased with method `EraseKey`:
 
 ```C++
