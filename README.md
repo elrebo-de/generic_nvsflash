@@ -22,7 +22,13 @@ The destructor commits all changes and closes the connection.
 
 # Usage
 
-Currently only values of type std::string are supported. 
+Currently only values of type 
+
+* std::string
+* int8_t
+* uint8_t 
+
+are supported. 
 Please call me if you want to use values of other types.
 
 Key Value pairs can be written with Method `SetStr` and 
