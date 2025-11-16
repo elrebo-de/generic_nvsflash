@@ -60,7 +60,7 @@ std::string GenericNvsFlash::GetStr(std::string key, esp_err_t *ret) {
     //ESP_LOGI(this->tag.c_str(), "GetStr für key %s", key.c_str());
     size_t required_size;
     nvs_get_str(this->nvsHandle, key.c_str(), NULL, &required_size);
-    char* outValue = malloc(required_size);
+    char* outValue = (char *)malloc(required_size);
     //ESP_LOGI(this->tag.c_str(), "GetStr call nvs_get_str");
     *ret = nvs_get_str(this->nvsHandle, key.c_str(), outValue, &required_size);
     //ESP_LOGI(this->tag.c_str(), "GetStr outValue = %s", outValue);
@@ -69,7 +69,7 @@ std::string GenericNvsFlash::GetStr(std::string key, esp_err_t *ret) {
         result = std::string(outValue);
     }
     else {
-        result = std:string("");
+        result = std::string("");
     }
     return result;
 }
@@ -158,6 +158,10 @@ uint16_t GenericNvsFlash::GetU16(std::string key, esp_err_t *ret) {
     return result;
 }
 
+esp_err_t GenericNvsFlash::SetU16(std::string key, uint16_t value) {
+    return nvs_set_u16(this->nvsHandle, key.c_str(), value);
+}
+
 // int32_t
 
 int32_t GenericNvsFlash::GetI32(std::string key, esp_err_t *ret) {
@@ -196,6 +200,10 @@ uint32_t GenericNvsFlash::GetU32(std::string key, esp_err_t *ret) {
     return result;
 }
 
+esp_err_t GenericNvsFlash::SetU32(std::string key, uint32_t value) {
+    return nvs_set_u32(this->nvsHandle, key.c_str(), value);
+}
+
 // int64_t
 
 int64_t GenericNvsFlash::GetI64(std::string key, esp_err_t *ret) {
@@ -232,6 +240,10 @@ uint64_t GenericNvsFlash::GetU64(std::string key, esp_err_t *ret) {
         result = outValue;
     }
     return result;
+}
+
+esp_err_t GenericNvsFlash::SetU64(std::string key, uint64_t value) {
+    return nvs_set_u64(this->nvsHandle, key.c_str(), value);
 }
 
 esp_err_t GenericNvsFlash::EraseKey(std::string key) {
