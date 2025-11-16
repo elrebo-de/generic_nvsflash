@@ -58,24 +58,24 @@ GenericNvsFlash::~GenericNvsFlash() {
 
 std::string GenericNvsFlash::GetStr(std::string key, esp_err_t *ret) {
     //ESP_LOGI(this->tag.c_str(), "GetStr für key %s", key.c_str());
-    // out_value definieren
-    char* outValue = (char *)malloc(4000);
-    //char outValue[4000];
-    // länge von out_value in length speichern
-    size_t length = 4000;
-    // out_value abrufen
+    size_t required_size;
+    nvs_get_str(this->nvsHandle, key.c_str(), NULL, &required_size);
+    char* outValue = malloc(required_size);
     //ESP_LOGI(this->tag.c_str(), "GetStr call nvs_get_str");
-    *ret = nvs_get_str(this->nvsHandle, key.c_str(), outValue, &length);
+    *ret = nvs_get_str(this->nvsHandle, key.c_str(), outValue, &required_size);
     //ESP_LOGI(this->tag.c_str(), "GetStr outValue = %s", outValue);
-    std::string result = "";
+    std::string result;
     if (*ret == ESP_OK) {
         result = std::string(outValue);
+    }
+    else {
+        result = std:string("");
     }
     return result;
 }
 
-esp_err_t GenericNvsFlash::SetStr(std::string key, std::string outValue) {
-    return nvs_set_str(this->nvsHandle, key.c_str(), outValue.c_str());
+esp_err_t GenericNvsFlash::SetStr(std::string key, std::string value) {
+    return nvs_set_str(this->nvsHandle, key.c_str(), value.c_str());
 }
 
 // int8_t
@@ -95,8 +95,8 @@ int8_t GenericNvsFlash::GetI8(std::string key, esp_err_t *ret) {
     return result;
 }
 
-esp_err_t GenericNvsFlash::SetI8(std::string key, int8_t outValue) {
-    return nvs_set_i8(this->nvsHandle, key.c_str(), outValue);
+esp_err_t GenericNvsFlash::SetI8(std::string key, int8_t value) {
+    return nvs_set_i8(this->nvsHandle, key.c_str(), value);
 }
 
 // uint8_t
@@ -116,8 +116,8 @@ uint8_t GenericNvsFlash::GetU8(std::string key, esp_err_t *ret) {
     return result;
 }
 
-esp_err_t GenericNvsFlash::SetU8(std::string key, uint8_t outValue) {
-    return nvs_set_u8(this->nvsHandle, key.c_str(), outValue);
+esp_err_t GenericNvsFlash::SetU8(std::string key, uint8_t value) {
+    return nvs_set_u8(this->nvsHandle, key.c_str(), value);
 }
 
 esp_err_t GenericNvsFlash::EraseKey(std::string key) {
