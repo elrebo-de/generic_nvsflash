@@ -1,6 +1,6 @@
-version: "1.0.7"
+version: "1.0.8"
 license: "MIT"
-description: "NVS flash component for ESP-IDF version 6.0+ using a C++ class"
+description: "NVS flash component for ESP-IDF version 5.5.0+ using a C++ class"
 url: "https://github.com/elrebo-de/generic_nvsflash"
 issues: "https://github.com/elrebo-de/generic_nvsflash/issues"
 repository: "https://github.com/elrebo-de/generic_nvsflash.git"
@@ -9,4 +9,4 @@ maintainers:
 files:
   use_gitignore: "true"
 dependencies:
-  idf: "^6.0.0"
+  idf: ">=5.5.0"
