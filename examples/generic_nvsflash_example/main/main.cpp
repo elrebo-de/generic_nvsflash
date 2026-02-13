@@ -3,6 +3,15 @@
  */
 
 #include <string>
+
+// when WIFI_ACTIVE is defined, a Wifi connection will be established before GenericNvsFlash is constructed.
+// In the constructor of Wifi class nvs_flash is initialized
+// This is to test, whether GenericNvsFlash works with preinitialized nvs_flash
+#undef WIFI_ACTIVE
+
+#ifdef WIFI_ACTIVE
+#include "wifi_manager.hpp"
+#endif
 #include "generic_nvsflash.hpp"
 #include "esp_log.h"
 
@@ -14,6 +23,27 @@ static const char *tag = "generic_nvsflash_example";
 
 extern "C" void app_main(void)
 {
+#ifdef WIFI_ACTIVE
+    /* Initialize Wifi class */
+    ESP_LOGI(tag, "Wifi");
+    Wifi wifi(
+		std::string("Wifi"), // tag
+		std::string("ESP32"), // ssid_prefix
+		std::string("de-DE") // language
+    );
+
+    ESP_LOGI(tag, "Wifi is %s", wifi.IsConnected() ? "connected" : "not connected");
+
+    ESP_LOGI(tag, "Ssid: %s", wifi.GetSsid().c_str());
+    ESP_LOGI(tag, "IpAddress: %s", wifi.GetIpAddress().c_str());
+    ESP_LOGI(tag, "Rssi: %i", wifi.GetRssi());
+    ESP_LOGI(tag, "Channel: %i", wifi.GetChannel());
+    ESP_LOGI(tag, "MacAddress: %s", wifi.GetMacAddress().c_str());
+
+    vTaskDelay(pdMS_TO_TICKS(10000)); // delay 10 seconds
+#endif
+
+    ESP_LOGI(tag, "GenericNvsFlash");
     /* Open NVS flash Namespace "wifi" for read/write operations */
     GenericNvsFlash nvsWifi(std::string("nvsWifi"), std::string("wifi"), NVS_READWRITE);
 

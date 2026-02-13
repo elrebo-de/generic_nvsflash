@@ -30,7 +30,7 @@ GenericNvsFlash::GenericNvsFlash(std::string tag, std::string nvsNamespace, nvs_
             ret = nvs_flash_init();
         }
         ESP_ERROR_CHECK(ret);
-        //ESP_LOGI(this->tag.c_str(), "nvsFlashInitialized == true");
+        ESP_LOGI(this->tag.c_str(), "nvsFlashInitialized == true");
         nvsFlashInitialized = true;
     }
 
@@ -41,7 +41,7 @@ GenericNvsFlash::GenericNvsFlash(std::string tag, std::string nvsNamespace, nvs_
             // The namespace doesn't exist
         }
         else {
-            //ESP_LOGI(this->tag.c_str(), "nvsNamespaceOpen == true");
+            ESP_LOGI(this->tag.c_str(), "nvsNamespaceOpen == true");
             this->nvsNamespaceOpen = true;
         }
     }
