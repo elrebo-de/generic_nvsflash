@@ -7,7 +7,7 @@
 // when WIFI_ACTIVE is defined, a Wifi connection will be established before GenericNvsFlash is constructed.
 // In the constructor of Wifi class nvs_flash is initialized
 // This is to test, whether GenericNvsFlash works with preinitialized nvs_flash
-#undef WIFI_ACTIVE
+#define WIFI_ACTIVE
 
 #ifdef WIFI_ACTIVE
 #include "wifi_manager.hpp"
