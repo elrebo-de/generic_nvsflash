@@ -1,7 +1,3 @@
-idf_component_register(SRCS "main.cpp"
-                    INCLUDE_DIRS "."
-                    REQUIRES "nvs_flash"
-                             "elrebo-de__generic_nvsflash"
-                             # WIFI_ACTIVE
-                             "elrebo-de__wifi_manager"
-                             )
+idf_component_register( SRCS "main.cpp"
+                        INCLUDE_DIRS "."
+                      )
