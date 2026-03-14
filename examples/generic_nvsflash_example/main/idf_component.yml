@@ -1,8 +1,8 @@
-version: "1.0.15"
+version: "1.0.16"
 dependencies:
     idf: ">=5.5.0"
     elrebo-de/generic_nvsflash:
-      version: "1.0.15"
+      version: "1.0.16"
       override_path: '../../../' # three levels up, pointing to the directory with the component itself
     # WIFI_ACTIVE
     elrebo-de/wifi_manager: ^1.4.1

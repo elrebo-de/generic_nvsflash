@@ -39,9 +39,10 @@ GenericNvsFlash::GenericNvsFlash(std::string tag, std::string nvsNamespace, nvs_
         auto ret = nvs_open(nvsNamespace.c_str(), nvsOpenMode, &nvsHandle);
         if (ret != ESP_OK) {
             // The namespace doesn't exist
+            ESP_LOGI(this->tag.c_str(), "constructor nvsNamespaceOpen(%s) == false", nvsNamespace.c_str());
         }
         else {
-            ESP_LOGI(this->tag.c_str(), "nvsNamespaceOpen == true");
+            ESP_LOGI(this->tag.c_str(), "constructor nvsNamespaceOpen(%s) == true", nvsNamespace.c_str());
             this->nvsNamespaceOpen = true;
         }
     }
