@@ -1,4 +1,4 @@
-version: "1.0.12"
+version: "1.0.13"
 license: "MIT"
 description: "NVS flash component for ESP-IDF version 5.5.0+ using a C++ class"
 url: "https://elrebo.de/index.php/2026/02/26/generic_nvsflash/"

@@ -49,8 +49,11 @@ GenericNvsFlash::GenericNvsFlash(std::string tag, std::string nvsNamespace, nvs_
 }
 
 GenericNvsFlash::~GenericNvsFlash() {
+    ESP_LOGI(this->tag.c_str(), "destructor");
     if (this->nvsNamespaceOpen) {
+        ESP_LOGI(this->tag.c_str(), "... commit namespace");
         nvs_commit(this->nvsHandle);
+        ESP_LOGI(this->tag.c_str(), "... close namespace");
         nvs_close(this->nvsHandle);
     }
 }
