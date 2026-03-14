@@ -63,13 +63,13 @@ GenericNvsFlash::~GenericNvsFlash() {
 // std:: string
 
 std::string GenericNvsFlash::GetStr(std::string key, esp_err_t *ret) {
-    //ESP_LOGI(this->tag.c_str(), "GetStr für key %s", key.c_str());
+    ESP_LOGI(this->tag.c_str(), "GetStr für key %s", key.c_str());
     size_t required_size;
     nvs_get_str(this->nvsHandle, key.c_str(), NULL, &required_size);
     char* outValue = (char *)malloc(required_size);
-    //ESP_LOGI(this->tag.c_str(), "GetStr call nvs_get_str");
+    ESP_LOGI(this->tag.c_str(), "GetStr call nvs_get_str");
     *ret = nvs_get_str(this->nvsHandle, key.c_str(), outValue, &required_size);
-    //ESP_LOGI(this->tag.c_str(), "GetStr outValue = %s", outValue);
+    ESP_LOGI(this->tag.c_str(), "GetStr outValue = %s", outValue);
     std::string result;
     if (*ret == ESP_OK) {
         result = std::string(outValue);
