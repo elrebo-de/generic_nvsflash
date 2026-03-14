@@ -49,12 +49,13 @@ GenericNvsFlash::GenericNvsFlash(std::string tag, std::string nvsNamespace, nvs_
 }
 
 GenericNvsFlash::~GenericNvsFlash() {
+    esp_err_t ret;
     ESP_LOGI(this->tag.c_str(), "destructor");
     if (this->nvsNamespaceOpen) {
-        ESP_LOGI(this->tag.c_str(), "... commit namespace");
-        nvs_commit(this->nvsHandle);
-        ESP_LOGI(this->tag.c_str(), "... close namespace");
-        nvs_close(this->nvsHandle);
+        ret = nvs_commit(this->nvsHandle);
+        ESP_LOGI(this->tag.c_str(), "... commit namespace ret=%u", ret);
+        ret = nvs_close(this->nvsHandle);
+        ESP_LOGI(this->tag.c_str(), "... close namespace ret=%u", ret);
     }
 }
 
@@ -75,6 +76,7 @@ std::string GenericNvsFlash::GetStr(std::string key, esp_err_t *ret) {
     else {
         result = std::string("");
     }
+    free outValue;
     return result;
 }
 
