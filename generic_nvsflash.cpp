@@ -30,7 +30,7 @@ GenericNvsFlash::GenericNvsFlash(std::string tag, std::string nvsNamespace, nvs_
             ret = nvs_flash_init();
         }
         ESP_ERROR_CHECK(ret);
-        ESP_LOGI(this->tag.c_str(), "nvsFlashInitialized == true");
+        //ESP_LOGD(this->tag.c_str(), "nvsFlashInitialized == true");
         nvsFlashInitialized = true;
     }
 
@@ -39,10 +39,10 @@ GenericNvsFlash::GenericNvsFlash(std::string tag, std::string nvsNamespace, nvs_
         auto ret = nvs_open(nvsNamespace.c_str(), nvsOpenMode, &nvsHandle);
         if (ret != ESP_OK) {
             // The namespace doesn't exist
-            ESP_LOGI(this->tag.c_str(), "constructor nvsNamespaceOpen(%s) == false", nvsNamespace.c_str());
+            //ESP_LOGD(this->tag.c_str(), "constructor nvsNamespaceOpen(%s) == false", nvsNamespace.c_str());
         }
         else {
-            ESP_LOGI(this->tag.c_str(), "constructor nvsNamespaceOpen(%s) == true", nvsNamespace.c_str());
+            //ESP_LOGD(this->tag.c_str(), "constructor nvsNamespaceOpen(%s) == true", nvsNamespace.c_str());
             this->nvsNamespaceOpen = true;
         }
     }
@@ -51,28 +51,28 @@ GenericNvsFlash::GenericNvsFlash(std::string tag, std::string nvsNamespace, nvs_
 
 GenericNvsFlash::~GenericNvsFlash() {
     esp_err_t ret;
-    ESP_LOGI(this->tag.c_str(), "destructor");
+    //ESP_LOGD(this->tag.c_str(), "destructor");
     if (this->nvsNamespaceOpen) {
         ret = nvs_commit(this->nvsHandle);
-        ESP_LOGI(this->tag.c_str(), "... commit namespace ret=%u", ret);
+        //ESP_LOGD(this->tag.c_str(), "... commit namespace ret=%u", ret);
         nvs_close(this->nvsHandle);
-        ESP_LOGI(this->tag.c_str(), "... close namespace");
+        //ESP_LOGD(this->tag.c_str(), "... close namespace");
     }
 }
 
 // std:: string
 
 std::string GenericNvsFlash::GetStr(std::string key, esp_err_t *ret) {
-    ESP_LOGI(this->tag.c_str(), "GetStr für key %s", key.c_str());
+    //ESP_LOGD(this->tag.c_str(), "GetStr für key %s", key.c_str());
 
     size_t required_size;
     std::string result = "";
 
     if ( (*ret = nvs_get_str(this->nvsHandle, key.c_str(), NULL, &required_size)) == ESP_OK) {
         char *outValue = (char *)malloc(required_size);
-        ESP_LOGI(this->tag.c_str(), "GetStr required_size=%lu", required_size);
+        //ESP_LOGD(this->tag.c_str(), "GetStr required_size=%lu", required_size);
         if ( (*ret = nvs_get_str(this->nvsHandle, key.c_str(), outValue, &required_size)) == ESP_OK) {
-            ESP_LOGI(this->tag.c_str(), "GetStr outValue = %s", outValue);
+            //ESP_LOGD(this->tag.c_str(), "GetStr outValue = %s", outValue);
             result = std::string(outValue);
         };
         free(outValue);
