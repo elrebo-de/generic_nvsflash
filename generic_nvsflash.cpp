@@ -1,7 +1,6 @@
 /*
  * generic_nvsflash.cpp
  *
- *  Created on 01.11.2025
  *      Author: christophoberle
  *
  * this work is licenced under the Apache 2.0 licence
@@ -50,13 +49,9 @@ GenericNvsFlash::GenericNvsFlash(std::string tag, std::string nvsNamespace, nvs_
 }
 
 GenericNvsFlash::~GenericNvsFlash() {
-    esp_err_t ret;
-    //ESP_LOGD(this->tag.c_str(), "destructor");
     if (this->nvsNamespaceOpen) {
-        ret = nvs_commit(this->nvsHandle);
-        //ESP_LOGD(this->tag.c_str(), "... commit namespace ret=%u", ret);
+        nvs_commit(this->nvsHandle);
         nvs_close(this->nvsHandle);
-        //ESP_LOGD(this->tag.c_str(), "... close namespace");
     }
 }
 
